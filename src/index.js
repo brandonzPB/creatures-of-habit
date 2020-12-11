@@ -10,13 +10,13 @@ import indexRouter from './routes/index';
 import dashboardRouter from './routes/dashboard';
 import path from 'path';
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-const PORT = process.env.PORT || 8080;
-const mongoDB = process.env.DATABASE_URL;
+const PORT = ck.PORT || 8080;
+const mongoDB = ck.DATABASE_URL;
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 const db = mongoose.connection;
@@ -26,7 +26,7 @@ db.once('open', function() {
   console.log('MongoDB connection successful!');
 });
 
-const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://bz-creatures-of-habit.herokuapp.com'];
+const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:8080', 'https://bz-creatures-of-habit.herokuapp.com'];
 const corsOptions = {
   origin: function (origin, callback) {
     console.log('** Origin of request' + origin);
@@ -43,7 +43,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-if (process.env.NODE_ENV === 'production') {
+if (ck.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'build')));
 
   app.get('*', (req, res) => {
