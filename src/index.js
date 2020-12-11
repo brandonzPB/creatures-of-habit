@@ -66,7 +66,12 @@ app.use(cors());
 //   serveIndex(contentFolder, { icons: true })(req, res, next)
 // });
 
-app.use(session({ secret: ck.SESSION_SECRET, resave: false, saveUninitialized: true }));
+app.use(session({ 
+  secret: ck.SESSION_SECRET, 
+  resave: false, 
+  saveUninitialized: true 
+}));
+
 app.use(express.json());
 
 app.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
