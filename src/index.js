@@ -55,7 +55,19 @@ app.use(cors());
 //   });
 // }
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, '../client/build')));
+
+var contentFolder = __dirname + '../client/build'
+
+app.use(express.static(contentFolder));
+
+app.use('/*', (req, res) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return next();
+  }
+
+  serveIndex(contentFolder, { icons: true })(req, res, next)
+});
 
 app.use(session({ secret: ck.SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(express.json());
