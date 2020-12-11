@@ -47,27 +47,15 @@ db.once('open', function() {
 
 app.use(cors());
 
-// if (ck.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, 'client/build')));
+if (ck.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-//   });
-// }
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+}
 
-// app.use(express.static(path.join(__dirname, 'client/build')));
-
-const contentFolder = __dirname + '/client/build'
-
-app.use(express.static(contentFolder));
-
-app.use('/', (req, res) => {
-  if (req.method !== 'GET' && req.method !== 'HEAD') {
-    return next();
-  }
-
-  serveIndex(contentFolder, { icons: true })(req, res, next)
-});
+// app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(session({ secret: ck.SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(express.json());
