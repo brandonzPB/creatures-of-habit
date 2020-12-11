@@ -9,12 +9,16 @@ import cors from 'cors';
 import indexRouter from './routes/index';
 import dashboardRouter from './routes/dashboard';
 import path from 'path';
+import compression from 'compression';
+import helmet from 'helmet';
 
 const PORT = ck.PORT || 8080;
 const mongoDB = ck.DATABASE_URL;
 
 const app = express();
 
+app.use(helmet());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -26,22 +30,22 @@ db.once('open', function() {
   console.log('MongoDB connection successful!');
 });
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:8080', 'https://bz-creatures-of-habit.herokuapp.com'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log('** Origin of request' + origin);
+// const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:8080', 'https://bz-creatures-of-habit.herokuapp.com'];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     console.log('** Origin of request' + origin);
     
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      console.log('Origin acceptable');
-      callback(null, true);
-    } else {
-      console.log('Origin rejected');
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}
+//     if (whitelist.indexOf(origin) !== -1 || !origin) {
+//       console.log('Origin acceptable');
+//       callback(null, true);
+//     } else {
+//       console.log('Origin rejected');
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// }
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 if (ck.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'build')));
