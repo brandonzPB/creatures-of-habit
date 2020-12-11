@@ -1,28 +1,28 @@
 const ck = require('ckey');
 
-import mongoose from 'mongoose';
-import express from 'express';
-import session from 'express-session';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+// import mongoose from 'mongoose';
+// import express from 'express';
+// import session from 'express-session';
+// import bodyParser from 'body-parser';
+// import cors from 'cors';
 
-// const mongoose = require('mongoose');
-// const express = require('express');
-// const session = require('session');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
+// import indexRouter from './routes/index';
+// import dashboardRouter from './routes/dashboard';
+// import path from 'path';
+// import compression from 'compression';
+// import helmet from 'helmet';
 
-// const indexRouter = require('./routes/index');
-// const dashboardRouter = require('./routes/index');
-// const path = require('path');
-// const compression = require('compression');
-// const helmet = require('helmet');
+const mongoose = require('mongoose');
+const express = require('express');
+const session = require('session');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-import indexRouter from './routes/index';
-import dashboardRouter from './routes/dashboard';
-import path from 'path';
-import compression from 'compression';
-import helmet from 'helmet';
+const indexRouter = require('./routes/index');
+const dashboardRouter = require('./routes/index');
+const path = require('path');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const PORT = ck.PORT || 3001;
 const mongoDB = ck.DATABASE_URL;

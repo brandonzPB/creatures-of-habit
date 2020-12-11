@@ -1,15 +1,25 @@
 const ck = require('ckey');
 
-import User from '../models/user';
-import Creature from '../models/creature';
+// import User from '../models/user';
+// import Creature from '../models/creature';
 
-import async, { rejectSeries } from 'async';
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-import { v4 as uuidv4 } from 'uuid';
-import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
-import randomstring from 'randomstring';
+const User = require('../models/user');
+const Creature = require('../models/creature');
+
+// import async from 'async';
+// import mongoose from 'mongoose';
+// import bcrypt from 'bcryptjs';
+// import { v4 as uuidv4 } from 'uuid';
+// import jwt from 'jsonwebtoken';
+// import nodemailer from 'nodemailer';
+// import randomstring from 'randomstring';
+
+const async = require('async');
+const bcrypt = require('bcryptjs');
+const {v4: uuidv4} = require('uuid');
+const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const randomstring = require('randomstring');
 
 exports.verifyToken = (req, res, next) => {
   const bearerHeader = req.headers['authorization'];

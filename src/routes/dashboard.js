@@ -1,7 +1,11 @@
-import { Router } from 'express';
-import user_controller from '../controllers/userController';
-import creature_controller from '../controllers/creatureController';
-const router = Router();
+// import { Router } from 'express';
+// import user_controller from '../controllers/userController';
+// import creature_controller from '../controllers/creatureController';
+// const router = Router();
+
+const router = require('express').Router();
+const user_controller = require('../controllers/userController');
+const creature_controller = require('../controllers/creatureController');
 
 /// USER ROUTES ///
 
@@ -82,4 +86,5 @@ router.delete('/user/:userId/creature/:id/delete', user_controller.verifyToken, 
 // GET user creatures
 router.get('/user/:id/creatures', user_controller.verifyToken, creature_controller.creature_list);
 
-export default router;
+// export default router;
+module.exports = router;

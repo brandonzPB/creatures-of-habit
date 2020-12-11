@@ -1,11 +1,21 @@
-import User from '../models/user';
-import Creature from '../models/creature';
+// import User from '../models/user';
+// import Creature from '../models/creature';
 
-import async from 'async';
-import { v4 as uuidv4 } from 'uuid';
-import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
-import passportJWT from 'passport-jwt';
+const User = require('../models/user');
+const Creature = require('../models/creature');
+
+// import async from 'async';
+// import { v4 as uuidv4 } from 'uuid';
+// import mongoose from 'mongoose';
+// import jwt from 'jsonwebtoken';
+// import passportJWT from 'passport-jwt';
+
+const async = require('async');
+const {v4: uuidv4} = require('uuid');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const passportJWT = require('passport-jwt');
+
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
