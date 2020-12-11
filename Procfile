@@ -1,1 +1,1 @@
-web:npm run heroku-postbuild
+web:npm start
