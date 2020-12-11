@@ -12,7 +12,7 @@ import path from 'path';
 import compression from 'compression';
 import helmet from 'helmet';
 
-const PORT = ck.PORT || 3001;
+const PORT = ck.PORT || 5000;
 const mongoDB = ck.DATABASE_URL;
 
 const app = express();
