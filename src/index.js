@@ -51,7 +51,7 @@ if (ck.NODE_ENV === 'production') {
   });
 }
 
-app.use(session({ secret: 'chunkypb', resave: false, saveUninitialized: true }));
+app.use(session({ secret: ck.SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(express.json());
 
 app.use('/', indexRouter);
