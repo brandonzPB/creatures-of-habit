@@ -12,7 +12,7 @@ import path from 'path';
 import compression from 'compression';
 import helmet from 'helmet';
 
-const PORT = ck.PORT || 8080;
+const PORT = ck.PORT || 3001;
 const mongoDB = ck.DATABASE_URL;
 
 const app = express();
@@ -47,13 +47,13 @@ db.once('open', function() {
 
 app.use(cors());
 
-if (ck.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
+// if (ck.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+//   });
+// }
 
 // app.use(express.static(path.join(__dirname, '../client/build')));
 
