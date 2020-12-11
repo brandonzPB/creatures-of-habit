@@ -13,8 +13,8 @@ import path from 'path';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const PORT = ck.PORT || 8080;
-const mongoDB = ck.DATABASE_URL;
+const PORT = process.env.PORT || 8080;
+const mongoDB = process.env.DATABASE_URL;
 
 const app = express();
 
@@ -43,7 +43,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-if (ck.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'build')));
 
   app.get('*', (req, res) => {

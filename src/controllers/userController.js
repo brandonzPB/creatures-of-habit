@@ -18,7 +18,7 @@ exports.verifyToken = (req, res, next) => {
 
   if (bearerToken === null) { return res.status(401); }
 
-  jwt.verify(bearerToken, ck.ACCESS_SECRET, (err, user) => {
+  jwt.verify(bearerToken, process.env.ACCESS_SECRET, (err, user) => {
     if (err) { return res.status(403); }
 
     req.user = user;
@@ -33,7 +33,7 @@ exports.verifyReset = (req, res, next) => {
 
   if (bearerToken === null) { return res.status(401); }
 
-  jwt.verify(bearerToken, ck.RESET_SECRET, (err, user) => {
+  jwt.verify(bearerToken, process.env.RESET_SECRET, (err, user) => {
     if (err) { return res.status(403); }
 
     req.user = user;
@@ -102,19 +102,19 @@ exports.reset_code_get = async function(req, res, next) {
     reset_code: req.body.reset_code
   };
 
-  const reset_token = jwt.sign(user, ck.RESET_SECRET, { expiresIn: '1800s' });
+  const reset_token = jwt.sign(user, process.env.RESET_SECRET, { expiresIn: '1800s' });
 
   const transporter = nodemailer.createTransport({
     secure: true,
     service: 'gmail',
     auth: {
-      user: ck.EMAIL,
-      pass: ck.EMAIL_PASSWORD,
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD,
     }
   });
 
   const mailOptions = {
-    from: ck.EMAIL,
+    from: process.env.EMAIL,
     to: req.body.email,
     subject: 'Your Creatures of Habit account info',
     text: `Hello, copy and paste the following code into the input box as directed on the Creatures webpage: ${reset_code}`
@@ -232,7 +232,7 @@ exports.user_login = async function(req, res, next) {
     _id: user._id
   };
 
-  const accessToken = jwt.sign(userToken, ck.ACCESS_SECRET);
+  const accessToken = jwt.sign(userToken, process.env.ACCESS_SECRET);
 
   return res.json({
     accessToken,
