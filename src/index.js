@@ -60,6 +60,8 @@ if (ck.NODE_ENV === 'production') {
 app.use(session({ secret: ck.SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(express.json());
 
+app.setHeader('Access-Control-Allow-Headers', 'Authorization');
+
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 
