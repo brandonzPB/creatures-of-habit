@@ -74,8 +74,6 @@ app.use(session({
 
 app.use(express.json());
 
-app.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
-
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 
