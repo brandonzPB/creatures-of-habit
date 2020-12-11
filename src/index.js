@@ -15,14 +15,15 @@ const ck = require('ckey');
 const mongoose = require('mongoose');
 const express = require('express');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
-const indexRouter = require('./routes/index');
-const dashboardRouter = require('./routes/index');
 const path = require('path');
 const compression = require('compression');
 const helmet = require('helmet');
+
+const indexRouter = require('./routes/index');
+const dashboardRouter = require('./routes/index');
 
 const PORT = ck.PORT || 3001;
 const mongoDB = ck.DATABASE_URL;
@@ -69,7 +70,8 @@ app.use(cors());
 app.use(session({ 
   secret: ck.SESSION_SECRET, 
   resave: false, 
-  saveUninitialized: true 
+  saveUninitialized: true,
+  store: new MongoStore(options)
 }));
 
 app.use(express.json());
