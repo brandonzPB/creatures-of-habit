@@ -14,7 +14,7 @@ const ck = require('ckey');
 
 const mongoose = require('mongoose');
 const express = require('express');
-const session = require('session');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
