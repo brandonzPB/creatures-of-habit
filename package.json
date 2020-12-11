@@ -8,8 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js",
-    "build": "babel src -d public"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "Brandon Zirulnikoff",
