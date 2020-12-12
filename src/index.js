@@ -1,4 +1,5 @@
 const ck = require('ckey');
+require('dotenv').config({ path: '.env' });
 
 // import mongoose from 'mongoose';
 // import express from 'express';
@@ -24,8 +25,8 @@ const helmet = require('helmet');
 const indexRouter = require('./routes/index');
 const dashboardRouter = require('./routes/index');
 
-const PORT = ck.PORT || 3001;
-const mongoDB = ck.DATABASE_URL;
+const PORT = process.env.PORT || 3001;
+const mongoDB = process.env.DATABASE_URL;
 
 const app = express();
 
@@ -45,7 +46,7 @@ db.once('open', function() {
 app.use(cors());
 
 app.use(session({ 
-  secret: ck.SESSION_SECRET, 
+  secret: process.env.SESSION_SECRET, 
   resave: false, 
   saveUninitialized: false,
 }));
