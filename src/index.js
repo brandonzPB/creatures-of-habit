@@ -15,7 +15,6 @@ const ck = require('ckey');
 const mongoose = require('mongoose');
 const express = require('express');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
@@ -70,8 +69,7 @@ app.use(cors());
 app.use(session({ 
   secret: ck.SESSION_SECRET, 
   resave: false, 
-  saveUninitialized: true,
-  store: new MongoStore(options)
+  saveUninitialized: false,
 }));
 
 app.use(express.json());
