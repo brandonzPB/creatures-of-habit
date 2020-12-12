@@ -1,5 +1,6 @@
 const ck = require('ckey');
-require('dotenv').config({ path: '.env' });
+const dotenv = require('dotenv');
+dotenv.config();
 
 // import mongoose from 'mongoose';
 // import express from 'express';
