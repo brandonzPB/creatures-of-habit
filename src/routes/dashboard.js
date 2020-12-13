@@ -10,7 +10,14 @@ const creature_controller = require('../controllers/creatureController');
 /// USER ROUTES ///
 
 // GET dashboard
-router.get('/', user_controller.get_dashboard);
+router.get('/', (req, res, next) => {
+  console.log('dashboard router start');
+  console.log('NODE_ENV', process.env.NODE_ENV);
+  console.log('hostname', req.hostname);
+  console.log('url', req.url);
+  console.log('header', req.header('x-forwarded-proto'));
+  debugger
+});
 
 // GET user create
 router.get('/user/create', user_controller.create_user_get);
