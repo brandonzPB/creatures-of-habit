@@ -9,6 +9,9 @@ const creature_controller = require('../controllers/creatureController');
 
 /// USER ROUTES ///
 
+// GET dashboard
+router.get('/', user_controller.get_dashboard);
+
 // GET user create
 router.get('/user/create', user_controller.create_user_get);
 

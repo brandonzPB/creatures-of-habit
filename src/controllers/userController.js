@@ -21,6 +21,10 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const randomstring = require('randomstring');
 
+exports.get_dashboard = function(req, res, next) {
+  res.status(200).send('Connection successfull');
+}
+
 exports.verifyToken = (req, res, next) => {
   const bearerHeader = req.headers['authorization'];
   
