@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
   console.log('hostname', req.hostname);
   console.log('url', req.url);
   console.log('header', req.header('x-forwarded-proto'));
-  debugger;
   res.redirect('/dashboard');
 });
 

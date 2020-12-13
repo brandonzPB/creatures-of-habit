@@ -11,13 +11,7 @@ const creature_controller = require('../controllers/creatureController');
 
 // GET dashboard
 router.get('/', (req, res, next) => {
-  console.log('dashboard router start');
-  console.log('NODE_ENV', process.env.NODE_ENV);
-  console.log('hostname', req.hostname);
-  console.log('url', req.url);
-  console.log('header', req.header('x-forwarded-proto'));
-  debugger;
-  res.status(200);
+  res.send('Index page');
 });
 
 // GET user create
