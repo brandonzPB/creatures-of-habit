@@ -14,8 +14,9 @@ dotenv.config();
 // import compression from 'compression';
 // import helmet from 'helmet';
 
-const mongoose = require('mongoose');
+const sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
+const mongoose = require('mongoose');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -30,6 +31,8 @@ const PORT = process.env.PORT || 3001;
 const mongoDB = process.env.DATABASE_URL;
 
 const app = express();
+
+app.use(sslRedirect());
 
 app.use(helmet());
 app.use(compression());
