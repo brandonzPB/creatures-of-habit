@@ -16,7 +16,8 @@ router.get('/', (req, res, next) => {
   console.log('hostname', req.hostname);
   console.log('url', req.url);
   console.log('header', req.header('x-forwarded-proto'));
-  debugger
+  debugger;
+  res.status(200);
 });
 
 // GET user create
