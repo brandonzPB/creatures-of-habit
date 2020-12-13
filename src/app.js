@@ -14,7 +14,7 @@ dotenv.config();
 // import compression from 'compression';
 // import helmet from 'helmet';
 
-const sslRedirect = require('heroku-ssl-redirect');
+import sslRedirect from 'heroku-ssl-redirect';
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
