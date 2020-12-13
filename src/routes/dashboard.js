@@ -65,26 +65,26 @@ router.get('/user/:userId/creature/create', creature_controller.create_creature_
 // POST creature create
 router.post('/user/:userId/creature/create', user_controller.verifyToken, creature_controller.create_creature_post);
 
-// GET creature objectives
-router.get('/user/:userId/creature/:id/objectives', creature_controller.update_creature_objectives_get);
-
-// PUT new objective
-router.put('/user/:userId/creature/:id/objectives', user_controller.verifyToken, creature_controller.update_objectives);
-
 // GET creature update
 router.get('/user/:userId/creature/:id/info', creature_controller.update_creature_info_get);
 
 // PUT creature update
 router.put('/user/:userId/creature/:id/info', user_controller.verifyToken, creature_controller.update_creature_info_put);
 
+// GET creature objectives
+router.get('/user/:userId/creature/:id/objectives', creature_controller.update_creature_objectives_get);
+
+// PUT new objective
+router.put('/user/:userId/creature/:id/objectives', user_controller.verifyToken, creature_controller.update_objectives);
+
+// DELETE creature
+router.delete('/user/:userId/creature/:id/delete', user_controller.verifyToken, creature_controller.delete_creature_post);
+
 // GET creature stats
 router.get('/user/:userId/creature/:id', creature_controller.update_creature_stats_get);
 
 // POST creature stats updates
 router.put('/user/:userId/creature/:id', user_controller.verifyToken, creature_controller.update_creature_stats);
-
-// DELETE creature
-router.delete('/user/:userId/creature/:id/delete', user_controller.verifyToken, creature_controller.delete_creature_post);
 
 // GET user creatures
 router.get('/user/:id/creatures', user_controller.verifyToken, creature_controller.creature_list);

@@ -46,6 +46,16 @@ db.once('open', function() {
 
 app.use(cors());
 
+if (process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https') {
+      res.redirect('https://' + req.hostname + req.url);
+    } else {
+      next();
+    }
+  });
+}
+
 app.use(session({ 
   secret: process.env.SESSION_SECRET, 
   resave: false, 
