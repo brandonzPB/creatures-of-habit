@@ -14,11 +14,6 @@ router.get('/', (req, res, next) => {
   res.send('Index page');
 });
 
-// GET test route
-router.get('/test', (req, res, next) => {
-  res.send('Test page');
-});
-
 // GET user create
 router.get('/user/create', user_controller.create_user_get);
 

@@ -24,7 +24,7 @@ const compression = require('compression');
 const helmet = require('helmet');
 
 const indexRouter = require('./routes/index');
-const dashboardRouter = require('./routes/index');
+const dashboardRouter = require('./routes/dashboard');
 
 const PORT = process.env.PORT || 3001;
 const mongoDB = process.env.DATABASE_URL;
