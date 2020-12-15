@@ -67,7 +67,7 @@ exports.create_creature_post = async function(req, res, next) {
     difficulty: req.body.difficulty,
     multiplier: req.body.multiplier,
     birth_date: req.body.birth_date,
-    birth_time: Date.now(),
+    birth_time: req.body.birth_time,
     age: req.body.age,
     is_noob: true,
     pokeball_number: req.body.pokeball_number,
