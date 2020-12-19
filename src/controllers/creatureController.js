@@ -39,18 +39,22 @@ exports.create_creature_get = function(req, res, next) {
 exports.create_creature_post = async function(req, res, next) {
   const user = await User.findById(req.user._id);
 
-  console.log(req.body);
+  const date = (new Date()).getDay();
+    let newDay;
 
-  const newDay = (new Date()).getDay();
-  
-  let newStreak;
-  if (newDay === 0) {
-    newStreak = 4;
-  } else if (newDay === 1) {
-    newStreak = 5;
-  } else {
-    newStreak = newDay - 2;
-  }
+    if (date === 0) {
+      newDay = 4;
+    } else if (date === 1) {
+      newDay = 5;
+    } else {
+      newDay = date - 2;
+    }
+
+  const newTime = Date.now() - 86400000;
+
+  const birthTime = Date.now();
+  const birthDate = (new Date()).getDay();
+  const age = ages.getAge(birthTime);
 
   const creature = new Creature({
     id: req.body.id,
@@ -68,12 +72,12 @@ exports.create_creature_post = async function(req, res, next) {
     multiplier: req.body.multiplier,
     birth_date: req.body.birth_date,
     birth_time: req.body.birth_time,
-    age: req.body.age,
+    age,
     is_noob: true,
     pokeball_number: req.body.pokeball_number,
     streak_count: 0,
-    streak_day: newStreak,
-    streak_timestamp: Date.now() - 86400000,
+    streak_day: newDay,
+    streak_timestamp: newTime,
     objectives: [],
     user
   });
