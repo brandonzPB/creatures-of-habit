@@ -1,22 +1,8 @@
-const ck = require('ckey');
-const dotenv = require('dotenv');
-dotenv.config();
-
-// import mongoose from 'mongoose';
-// import express from 'express';
-// import session from 'express-session';
-// import bodyParser from 'body-parser';
-// import cors from 'cors';
-
-// import indexRouter from './routes/index';
-// import dashboardRouter from './routes/dashboard';
-// import path from 'path';
-// import compression from 'compression';
-// import helmet from 'helmet';
+require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const session = require('express-session');
+const session = require('cookie-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
@@ -46,20 +32,23 @@ db.once('open', function() {
 
 app.use(cors());
 
-if (process.env.NODE_ENV === 'production') {
-  app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https') {
-      res.redirect('https://' + req.hostname + req.url);
-    } else {
-      next();
-    }
-  });
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use((req, res, next) => {
+//     if (req.header('x-forwarded-proto') !== 'https') {
+//       res.redirect('https://' + req.hostname + req.url);
+//     } else {
+//       next();
+//     }
+//   });
+// }
 
-app.use(session({ 
-  secret: process.env.SESSION_SECRET, 
-  resave: false, 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
   saveUninitialized: false,
+  cookie: {
+    secure: true
+  }
 }));
 
 app.use(express.json());
